@@ -3,6 +3,14 @@
   "version": "1.0.0",
   "description": "JavaScript development environment Pluralsight course by Cory House",
   "scripts": {
+    "prestart": "babel-node buildScripts/startMessage.js",
+    "start": "npm-run-all --parallel security-check express-server lint:watch",
+    "express-server": "babel-node buildScripts/srcServer.js",
+    "lint": "esw webpack.config.* buildScripts src --color",
+    "lint:watch": "npm run lint -- --watch",
+    "security-check": "nsp check",
+    "localtunnel": "lt --port 3000",
+    "share": "npm-run-all --parallel localtunnel express-server"
   },
   "author": "Zak",
   "license": "",
@@ -39,9 +47,9 @@
     "open": "0.0.5",
     "rimraf": "2.5.4",
     "style-loader": "0.13.1",
-    "webpack": "1.13.2",
-    "webpack-dev-middleware": "1.8.4",
-    "webpack-hot-middleware": "2.13.0",
-    "webpack-md5-hash": "0.0.5"
+    "webpack": "^3.10.0",
+    "webpack-dev-middleware": "^2.0.4",
+    "webpack-hot-middleware": "^2.21.0",
+    "webpack-md5-hash": "0.0.6"
   }
 }
